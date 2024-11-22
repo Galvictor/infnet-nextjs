@@ -1,0 +1,8 @@
+/*
+Importar o tailwindcss
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Adicionar estilos globais */
