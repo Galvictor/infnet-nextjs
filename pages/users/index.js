@@ -1,11 +1,10 @@
 import Layout from "@/components/layout";
-import Link from "next/link";
 import SEO from "@/components/seo";
 
 export async function getServerSideProps() {
     console.log('Fetching users...');
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const users = await res.json();
+    const res = await fetch('https://dummyjson.com/users');
+    const {users} = await res.json();
     return {props: {users}};
 
 }
@@ -16,29 +15,26 @@ export default function Users({users}) {
             title="Usuários"
             description="Bem-vindo à página inicial do Meu Site. Explore conteúdos incríveis!"
         />
-        <div className="overflow-x-auto">
-            <table className="min-w-full table-auto border-collapse border border-gray-300 rounded-lg">
-                <thead className="bg-blue-500 text-white">
+        <div className="container mt-4">
+            <table className="table table-striped table-bordered">
+                <thead className="table-dark">
                 <tr>
-                    <th className="border border-gray-300 px-4 py-2 text-left">ID</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Nome</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Email</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Ações</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                 {users.map((user) => (
-                    <tr key={user.id} className="hover:bg-blue-50">
-                        <td className="border border-gray-300 px-4 py-2">{user.id}</td>
-                        <td className="border border-gray-300 px-4 py-2">{user.name}</td>
-                        <td className="border border-gray-300 px-4 py-2">{user.email}</td>
-                        <td className="border border-gray-300 px-4 py-2">
-                            <Link
-                                href={`/users/${user.id}`}
-                                className="text-blue-500 hover:underline"
-                            >
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.firstName}</td>
+                        <td>{user.email}</td>
+                        <td>
+                            <a href={`/users/${user.id}`} className="btn btn-primary btn-sm">
                                 Ver Detalhes
-                            </Link>
+                            </a>
                         </td>
                     </tr>
                 ))}
