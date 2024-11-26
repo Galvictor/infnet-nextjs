@@ -15,7 +15,7 @@ export default function Users({users}) {
             title="Usuários"
             description="Bem-vindo à página inicial do Meu Site. Explore conteúdos incríveis!"
         />
-        <div className="container mt-4">
+        <div className="container top-navbar">
             <table className="table table-striped table-bordered">
                 <thead className="table-dark">
                 <tr>
