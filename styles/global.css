@@ -1,3 +1,11 @@
-.top-navbar{
+.top-navbar {
     margin-top: 5rem;
+}
+
+small {
+    display: inline-block;
+    background-color: #ccc;
+    border-radius: 8px;
+    padding: 0.3rem 0.5rem;
+    margin-left: 0.3rem;
 }

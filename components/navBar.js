@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NavBar() {
+export default function NavBar({onLogout}) {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
@@ -36,6 +36,11 @@ export default function NavBar() {
                             </Link>
                         </li>
                         <li className="nav-item">
+                            <Link className="nav-link" href="/perfil">
+                                Perfil
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link" href="/contact">
                                 Contato
                             </Link>
@@ -46,6 +51,9 @@ export default function NavBar() {
                             </Link>
                         </li>
                     </ul>
+                    <button className="btn btn-danger" onClick={onLogout}>
+                        Sair
+                    </button>
                 </div>
             </div>
         </nav>
