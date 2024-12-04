@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Image from "next/image";
 
 export default function Perfil({ user }) {
     if (!user) {
@@ -13,7 +14,9 @@ export default function Perfil({ user }) {
             <div className="card-body">
                 <div className="row">
                     <div className="col-4">
-                        <img
+                        <Image
+                            width={100}
+                            height={100}
                             src={user.image}
                             alt="Foto do usuário"
                             className="img-fluid rounded-circle"
