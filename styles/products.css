@@ -1,0 +1,49 @@
+/* Trunca textos longos em uma linha */
+.card-title,
+.card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Personalização das estrelas */
+.stars i {
+    color: #ffc107; /* Amarelo para as estrelas */
+}
+
+/* Estilo de preços */
+.old-price {
+    font-size: 0.9rem;
+}
+
+.price {
+    font-size: 1.2rem;
+}
+
+/* Espaçamento e alinhamento do card */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/*.card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
