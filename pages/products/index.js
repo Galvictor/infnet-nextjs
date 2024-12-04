@@ -2,10 +2,6 @@ import Layout from "@/components/layout";
 import SEO from "@/components/seo";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {renderStars, renderPriceDiscount} from "@/utils/libs";
-import "@/styles/products.css";
-
-// Import Swiper styles
-import 'swiper/css';
 import Link from "next/link";
 
 export async function getServerSideProps() {

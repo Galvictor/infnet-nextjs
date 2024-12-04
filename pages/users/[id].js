@@ -16,7 +16,7 @@ export default function User({ user }) {
                 title={user.firstName}
                 description={user.email}
             />
-            <div className="container mt-5">
+            <div className="container top-navbar">
                 <h1 className="text-2xl font-bold mb-4">Detalhes do Usuário</h1>
 
                 {/* Usando o componente Perfil para exibir os dados do usuário */}

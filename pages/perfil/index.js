@@ -41,7 +41,7 @@ export default function PerfilPage() {
                 description="Veja suas informações no perfil!"
             />
 
-            <div className="container mt-5">
+            <div className="container top-navbar">
                 <h1 className="text-2xl font-bold mb-4">Perfil</h1>
 
                 {loading && <p>Carregando...</p>}
