@@ -17,11 +17,9 @@ export default function User({produto}) {
                 title={produto.title}
                 description={produto.description}
             />
-            <div className="container mt-5">
-                <h1 className="text-2xl font-bold mb-4">Detalhes do Produto</h1>
-            </div>
-
             <div className="container top-navbar">
+                <h1 className="text-2xl font-bold mb-4">Detalhes do Produto</h1>
+
                 <div className="row g-4">
                     {/* Botão de Voltar */}
                     <div className="col-12 mb-3">
