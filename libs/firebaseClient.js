@@ -1,10 +1,8 @@
 import {initializeApp} from "firebase/app";
 import {getFirestore, collection, addDoc, serverTimestamp} from "firebase/firestore";
 
-// Certifique-se de carregar as variáveis de ambiente (especialmente no desenvolvimento)
-if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-}
+require("dotenv").config();
+
 
 // Configurações do Firebase
 const firebaseConfig = {
