@@ -1,8 +1,6 @@
-'use client';
+import {useState} from 'react';
 
-import { useState } from 'react';
-
-export default function ContactForm({ onSubmit }) {
+export default function ContactForm({onSubmit}) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -10,20 +8,20 @@ export default function ContactForm({ onSubmit }) {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData((prev) => ({...prev, [name]: value}));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const result = await onSubmit(formData);
         alert(result.message || 'Mensagem enviada com sucesso!');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({name: '', email: '', message: ''});
     };
 
     return (
         <form onSubmit={handleSubmit} className="container mt-4">
-            <h1>Componente com &#34;use client&#34; e handleSubmit usando &#34;use server&#34;</h1>
+            <h1>Componente Usando Firebase</h1>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label">Nome</label>
                 <input

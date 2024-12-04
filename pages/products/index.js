@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {renderStars, renderPriceDiscount} from "@/utils/libs";
+import {renderStars, renderPriceDiscount} from "@/utils/functions";
 import Link from "next/link";
 import Image from "next/image";
 

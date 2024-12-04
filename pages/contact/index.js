@@ -1,9 +1,14 @@
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
-import {submitContactForm} from "@/actions/contact";
 import ContactForm from "@/components/ContactForm";
+import {addContact} from "@/libs/firebaseClient";
 
 export default function ContactPage() {
+
+    const submitContactForm = async (data) => {
+        return await addContact(data);
+    };
+
     return <Layout>
         <SEO title="Contato"
              description="Bem-vindo à página inicial do Meu Site. Explore conteúdos incríveis!"></SEO>
