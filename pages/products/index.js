@@ -3,6 +3,7 @@ import SEO from "@/components/seo";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {renderStars, renderPriceDiscount} from "@/utils/libs";
 import Link from "next/link";
+import Image from "next/image";
 
 export async function getServerSideProps() {
     console.log('Fetching products...');
@@ -30,7 +31,9 @@ export default function ProductsPage({products}) {
             {products.map((product) => (
                 <SwiperSlide key={product.id}>
                     <div className="card h-100 shadow-sm">
-                        <img src={product.thumbnail} className="card-img-top img-fluid" alt={product.name}/>
+                        <Image width={500}
+                               height={500} src={product.thumbnail} className="card-img-top img-fluid"
+                               alt={product.name}/>
                         <div className="card-body">
                             <h5 className="card-title text-truncate">{product.name}</h5>
                             <p className="card-text text-muted text-truncate">{product.description}</p>

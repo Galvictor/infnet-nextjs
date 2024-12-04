@@ -1,6 +1,7 @@
 import SEO from "@/components/seo";
 import Layout from "@/components/layout";
 import {router} from "next/client";
+import Image from "next/image";
 
 export async function getServerSideProps({params}) {
     // Obtendo os dados do usuário a partir da API
@@ -33,7 +34,9 @@ export default function User({produto}) {
 
                     {/* Imagem do Produto */}
                     <div className="col-md-5 text-center">
-                        <img src={produto.thumbnail} alt={produto.title} className="img-fluid rounded shadow"/>
+                        <Image width={500}
+                               height={500} src={produto.thumbnail} alt={produto.title}
+                               className="img-fluid rounded shadow"/>
                     </div>
 
                     {/* Detalhes do Produto */}
