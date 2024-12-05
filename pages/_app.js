@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import '../styles/global.css';
 import "../styles/products.css";
-import 'swiper/css';
 import Head from 'next/head';
 import {useEffect} from "react";
 import {AuthProvider} from "@/contexts/authContext";

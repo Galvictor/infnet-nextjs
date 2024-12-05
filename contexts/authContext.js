@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { verifyToken } from "@/utils/auth";
+import {createContext, useContext, useEffect, useState} from "react";
+import {verifyToken} from "@/utils/auth";
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export function AuthProvider({children}) {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
                     setUser(data); // Atualiza o estado do usuário
                 } else {
                     localStorage.removeItem("accessToken");
+                    setUser(null);
                 }
                 setIsLoading(false);
             });
@@ -25,7 +26,7 @@ export function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, setUser, isLoading }}>
+        <AuthContext.Provider value={{user, setUser, isLoading}}>
             {children}
         </AuthContext.Provider>
     );

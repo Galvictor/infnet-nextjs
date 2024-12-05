@@ -1,6 +1,5 @@
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
-import {Swiper, SwiperSlide} from "swiper/react";
 import {renderStars, renderPriceDiscount} from "@/utils/functions";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,21 +20,15 @@ export default function ProductsPage({products}) {
             <h1 className="text-2xl font-bold">Produtos</h1>
             <p className="text-gray-500">Aqui você encontra os melhores produtos do mercado!</p>
         </div>
-        <Swiper
-            spaceBetween={30}
-            slidesPerView={6}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-            className="mySwiper"
-        >
+        <div className="row">
             {products.map((product) => (
-                <SwiperSlide key={product.id}>
+                <div className="col-2 mb-4" key={product.id}>
                     <div className="card h-100 shadow-sm">
                         <Image width={500}
                                height={500} src={product.thumbnail} className="card-img-top img-fluid"
-                               alt={product.name}/>
+                               alt={product.title}/>
                         <div className="card-body">
-                            <h5 className="card-title text-truncate">{product.name}</h5>
+                            <h5 className="card-title text-truncate">{product.title}</h5>
                             <p className="card-text text-muted text-truncate">{product.description}</p>
 
                             {/* Avaliação */}
@@ -58,8 +51,8 @@ export default function ProductsPage({products}) {
                             </Link>
                         </div>
                     </div>
-                </SwiperSlide>
+                </div>
             ))}
-        </Swiper>
+        </div>
     </Layout>
 }
