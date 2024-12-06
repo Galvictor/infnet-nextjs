@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import NavBar from "@/components/navBar";
 import Login from "@/components/login";
+import Footer from "@/components/Footer";
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
         // Verifica se há informações de login no localStorage
         const token = localStorage.getItem("accessToken");
         if (token) {
-            setUser({ token }); // Você pode armazenar mais informações aqui
+            setUser({token}); // Você pode armazenar mais informações aqui
         }
     }, []);
 
@@ -22,14 +23,13 @@ export default function Layout({ children }) {
     return (
         <div>
             {user ? (
-                <>
-                    <header>
-                        <NavBar onLogout={handleLogout} />
-                    </header>
+                <div className="wrap">
+                    <NavBar onLogout={handleLogout}/>
                     {children}
-                </>
+                    <Footer/>
+                </div>
             ) : (
-                <Login onLogin={setUser} />
+                <Login onLogin={setUser}/>
             )}
         </div>
     );
