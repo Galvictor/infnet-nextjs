@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {getFirestore, collection, addDoc, serverTimestamp} from "firebase/firestore";
+import {getFirestore, collection, addDoc, serverTimestamp, getDocs, orderBy, query} from "firebase/firestore";
 
 require("dotenv").config();
 
@@ -35,4 +35,19 @@ export const addContact = async (contactData) => {
         console.error("Erro ao adicionar o documento: ", e);
         return {message: "Erro ao enviar a mensagem.", success: false};
     }
+};
+
+// listagem de contatos
+export const listContacts = async () => {
+    const contactsQuery = query(collection(db, "contatos"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(contactsQuery);
+
+    let contacts = [];
+    querySnapshot.forEach((doc) => {
+        contacts.push({...doc.data(), id: doc.id});
+    });
+
+    console.log(contacts);
+
+    return contacts;
 };
