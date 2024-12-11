@@ -1,5 +1,6 @@
 import {initializeApp} from "firebase/app";
 import {getFirestore, collection, addDoc, serverTimestamp, getDocs, orderBy, query} from "firebase/firestore";
+import {getAuth} from "firebase/auth";
 
 require("dotenv").config();
 
@@ -51,3 +52,5 @@ export const listContacts = async () => {
 
     return contacts;
 };
+
+export const auth = getAuth();

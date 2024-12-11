@@ -2,6 +2,7 @@ import SEO from "@/components/seo";
 import Layout from "@/components/layout";
 import {router} from "next/client";
 import Image from "next/image";
+import WithAuth from "@/components/withAuth";
 
 export async function getServerSideProps({params}) {
     // Obtendo os dados do usuário a partir da API
@@ -10,7 +11,7 @@ export async function getServerSideProps({params}) {
     return {props: {produto}};
 }
 
-export default function User({produto}) {
+function Produto({produto}) {
     const discountedPrice = (produto.price - (produto.price * produto.discountPercentage) / 100).toFixed(2);
     return (
         <Layout>
@@ -112,3 +113,5 @@ export default function User({produto}) {
         </Layout>
     );
 }
+
+export default WithAuth(Produto);

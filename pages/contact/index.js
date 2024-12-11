@@ -4,8 +4,9 @@ import ContactForm from "@/components/ContactForm";
 import {addContact, listContacts} from "@/libs/firebaseClient";
 import ListContacts from "@/components/ListContacts";
 import {useEffect, useState} from "react";
+import WithAuth from "@/components/withAuth";
 
-export default function ContactPage() {
+function ContactPage() {
 
     const [contacts, setContacts] = useState([]);
 
@@ -49,3 +50,5 @@ export default function ContactPage() {
         </div>
     </Layout>
 }
+
+export default WithAuth(ContactPage);

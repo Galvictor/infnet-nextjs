@@ -1,7 +1,8 @@
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
+import WithAuth from "@/components/withAuth";
 
-export default function Page() {
+function Page() {
     return <Layout>
         <SEO
             title="Página Inicial"
@@ -13,3 +14,5 @@ export default function Page() {
         </div>
     </Layout>
 }
+
+export default WithAuth(Page);

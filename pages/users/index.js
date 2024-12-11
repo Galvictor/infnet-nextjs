@@ -1,5 +1,6 @@
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
+import WithAuth from "@/components/withAuth";
 
 export async function getServerSideProps() {
     console.log('Fetching users...');
@@ -9,7 +10,7 @@ export async function getServerSideProps() {
 
 }
 
-export default function Users({users}) {
+function Users({users}) {
     return <Layout>
         <SEO
             title="Usuários"
@@ -43,3 +44,5 @@ export default function Users({users}) {
         </div>
     </Layout>
 }
+
+export default WithAuth(Users);

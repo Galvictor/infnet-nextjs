@@ -1,6 +1,14 @@
 import Link from "next/link";
+import {router} from "next/client";
+import {auth} from "@/libs/firebaseClient";
 
-export default function NavBar({onLogout}) {
+export default function NavBar() {
+
+    const onLogout = () => {
+        auth.signOut();
+        router.push("/login");
+    };
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -37,18 +45,8 @@ export default function NavBar({onLogout}) {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" href="/perfil">
-                                    Perfil
-                                </Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link className="nav-link" href="/contact">
                                     Contato
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" href="/about">
-                                    Sobre
                                 </Link>
                             </li>
                         </ul>

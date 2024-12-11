@@ -3,6 +3,7 @@ import SEO from "@/components/seo";
 import {renderStars, renderPriceDiscount} from "@/utils/functions";
 import Link from "next/link";
 import Image from "next/image";
+import withAuth from "@/components/withAuth";
 
 export async function getServerSideProps() {
     console.log('Fetching products...');
@@ -12,7 +13,7 @@ export async function getServerSideProps() {
 
 }
 
-export default function ProductsPage({products}) {
+function ProductsPage({products}) {
     return <Layout>
         <SEO title="Produtos"
              description="Bem-vindo à página inicial do Meu Site. Explore conteúdos incríveis!"></SEO>
@@ -57,3 +58,5 @@ export default function ProductsPage({products}) {
         </div>
     </Layout>
 }
+
+export default withAuth(ProductsPage);
