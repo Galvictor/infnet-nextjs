@@ -1,6 +1,17 @@
 import {initializeApp} from "firebase/app";
-import {getFirestore, collection, addDoc, serverTimestamp, getDocs, orderBy, query} from "firebase/firestore";
-import {getAuth} from "firebase/auth";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp,
+    getDocs,
+    getDoc,
+    orderBy,
+    query,
+    setDoc,
+    doc
+} from "firebase/firestore";
+import {createUserWithEmailAndPassword, updateProfile, getAuth} from "firebase/auth";
 
 require("dotenv").config();
 
@@ -54,3 +65,56 @@ export const listContacts = async () => {
 };
 
 export const auth = getAuth();
+
+export const registerUser = async (email, password, name, role) => {
+    try {
+        // Criar o usuário com email e senha
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Atualizar o perfil do usuário (opcional)
+        await updateProfile(user, {displayName: name});
+
+        // Salvar informações adicionais no Firestore
+        await setDoc(doc(db, "users", user.uid), {
+            name: name,
+            email: email,
+            role: role,
+            createdAt: new Date(),
+        });
+
+        console.log("Usuário registrado e informações salvas!");
+
+        return user;
+
+    } catch (error) {
+        console.error("Erro ao registrar usuário:", error);
+        return null;
+    }
+}
+
+export const getUserData = async (uid) => {
+    try {
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (userDoc.exists()) {
+            console.log("Dados do usuário:", userDoc.data());
+            return userDoc.data();
+        } else {
+            console.log("Nenhum dado encontrado para este usuário!");
+            return null;
+        }
+    } catch (error) {
+        console.error("Erro ao buscar dados do usuário:", error);
+        return null;
+    }
+}
+
+export const getUsers = async () => {
+    const usersCollection = collection(db, "users");
+    const usersSnapshot = await getDocs(usersCollection);
+    let users = [];
+    usersSnapshot.forEach((doc) => {
+        users.push({...doc.data(), id: doc.id});
+    });
+    return users;
+}

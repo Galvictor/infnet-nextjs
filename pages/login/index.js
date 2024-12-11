@@ -3,6 +3,7 @@ import {auth} from "@/libs/firebaseClient";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 export default function Login() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -34,6 +35,7 @@ export default function Login() {
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
             <div className="card shadow p-4" style={{width: "100%", maxWidth: "400px"}}>
                 <h2 className="text-center mb-4">Login Firebase</h2>
+                <p>Não tem cadastro? Cadastre-se <Link href="/users/register">aqui</Link></p>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-3">
