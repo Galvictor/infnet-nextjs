@@ -30,9 +30,9 @@ export const addContact = async (contactData) => {
             createdAt: serverTimestamp(),  // Adiciona a data de criação automaticamente
         });
         console.log("Documento adicionado com ID: ", docRef.id);
-        return {message: "Mensagem enviada com sucesso!"};
+        return {message: "Mensagem enviada com sucesso! Documento adicionado com ID: " + docRef.id, success: true};
     } catch (e) {
         console.error("Erro ao adicionar o documento: ", e);
-        return {message: "Erro ao enviar a mensagem."};
+        return {message: "Erro ao enviar a mensagem.", success: false};
     }
 };

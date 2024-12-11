@@ -21,9 +21,9 @@ export default function Layout({children}) {
     };
 
     return (
-        <div>
+        <>
             {user ? (
-                <div className="wrap">
+                <div className="wrap-content">
                     <NavBar onLogout={handleLogout}/>
                     {children}
                     <Footer/>
@@ -31,6 +31,6 @@ export default function Layout({children}) {
             ) : (
                 <Login onLogin={setUser}/>
             )}
-        </div>
+        </>
     );
 }

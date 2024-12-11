@@ -1,26 +1,32 @@
-import {useState} from 'react';
+import {useForm} from "react-hook-form";
+import {useState} from "react";
 
 export default function ContactForm({onSubmit}) {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
+
+    const {register, handleSubmit, formState: {errors}, reset} = useForm();
+
+    const [result, setResult] = useState({
+        message: "",
+        success: false,
     });
 
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((prev) => ({...prev, [name]: value}));
-    };
+    const onSubmitFn = async (data) => {
+        console.log(data);
+        const _result = await onSubmit(data);
+        setResult(_result);
+        if (_result.success) {
+            reset();
+        }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const result = await onSubmit(formData);
-        alert(result.message || 'Mensagem enviada com sucesso!');
-        setFormData({name: '', email: '', message: ''});
     };
 
     return (
-        <form onSubmit={handleSubmit} className="container mt-4">
+        <form onSubmit={handleSubmit(onSubmitFn)} className="container mt-4">
+            {result.message && (
+                <div className={`alert ${result.success ? "alert-success" : "alert-danger"}`}>
+                    {result.message}
+                </div>
+            )}
             <h1>Componente Usando Firebase</h1>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label">Nome</label>
@@ -28,36 +34,36 @@ export default function ContactForm({onSubmit}) {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    {...register("name", {required: true})}
                     className="form-control"
                     required
                 />
             </div>
+            {errors.name && <p className="text-danger">Campo obrigatório</p>}
             <div className="mb-3">
                 <label htmlFor="email" className="form-label">E-mail</label>
                 <input
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    {...register("email", {required: true})}
                     className="form-control"
                     required
                 />
             </div>
+            {errors.email && <p className="text-danger">Campo obrigatório</p>}
             <div className="mb-3">
                 <label htmlFor="message" className="form-label">Mensagem</label>
                 <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
+                    {...register("message", {required: true})}
                     className="form-control"
                     rows="4"
                     required
                 />
             </div>
+            {errors.message && <p className="text-danger">Campo obrigatório</p>}
             <button type="submit" className="btn btn-primary">Enviar</button>
         </form>
     );

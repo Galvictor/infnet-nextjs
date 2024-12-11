@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NavBar({onLogout}) {
     return (
         <header>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <Link className="navbar-brand" href="/">
                         MinhaLogo
