@@ -1,16 +1,23 @@
 import Layout from "@/components/layout";
 import SEO from "@/components/seo";
 import WithAuth from "@/components/withAuth";
+import {useEffect, useState} from "react";
+import {getUsers} from "@/libs/firebaseClient";
 
-export async function getServerSideProps() {
-    console.log('Fetching users...');
-    const res = await fetch('https://dummyjson.com/users');
-    const {users} = await res.json();
-    return {props: {users}};
 
-}
+function Users() {
 
-function Users({users}) {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+
+        const fetchUsers = getUsers().then((users) => {
+            console.log(users);
+            setUsers(users);
+        });
+
+    });
+
     return <Layout>
         <SEO
             title="Usuários"
@@ -30,7 +37,7 @@ function Users({users}) {
                 {users.map((user) => (
                     <tr key={user.id}>
                         <td>{user.id}</td>
-                        <td>{user.firstName}</td>
+                        <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>
                             <a href={`/users/${user.id}`} className="btn btn-primary btn-sm">

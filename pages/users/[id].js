@@ -2,25 +2,44 @@ import SEO from "@/components/seo";
 import Layout from "@/components/layout";
 import Perfil from "@/components/perfil";
 import withAuth from "@/components/withAuth";
+import {useEffect, useState} from "react";
+import {getUserData} from "@/libs/firebaseClient";
+import {useRouter} from "next/router";
+import {router} from "next/client";
 
-export async function getServerSideProps({params}) {
-    // Obtendo os dados do usuário a partir da API
-    const res = await fetch(`https://dummyjson.com/users/${params.id}`);
-    const user = await res.json();
-    return {props: {user}};
-}
+function User() {
 
-function User({user}) {
+    const router = useRouter();
+    const {id} = router.query;
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+
+        const fetchUser = getUserData(id).then((user) => {
+
+            setUser(user);
+
+        });
+
+    });
+
+
     return (
         <Layout>
             <SEO
-                title={user.firstName}
+                title={user.name}
                 description={user.email}
             />
             <div className="container top-navbar">
-                <h1 className="text-2xl font-bold mb-4">Detalhes do Usuário</h1>
-
-                {/* Usando o componente Perfil para exibir os dados do usuário */}
+                <div className="col-12 mb-3">
+                    <button
+                        onClick={() => router.push("/users")}
+                        className="btn btn-outline-secondary"
+                    >
+                        <i className="bi bi-arrow-left"></i> Voltar para a Lista de Usuários
+                    </button>
+                </div>
                 <Perfil user={user}/>
             </div>
         </Layout>
