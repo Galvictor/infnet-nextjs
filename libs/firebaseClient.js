@@ -66,7 +66,8 @@ export const listContacts = async () => {
 
 export const auth = getAuth();
 
-export const registerUser = async (email, password, name, role) => {
+
+export const registerUser = async (email, password, name, role, cpf) => {
     try {
         // Criar o usuário com email e senha
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -80,16 +81,18 @@ export const registerUser = async (email, password, name, role) => {
             name: name,
             email: email,
             role: role,
+            cpf: cpf,
             createdAt: new Date(),
         });
 
         console.log("Usuário registrado e informações salvas!");
 
-        return user;
+        return {user, message: "Usuário registrado com sucesso!", success: true};
 
     } catch (error) {
-        console.error("Erro ao registrar usuário:", error);
-        return null;
+        //console.error("Erro ao registrar usuário:", error);
+        console.log("Erro ao registrar usuário: ", error.message);
+        return {message: "Erro ao registrar usuário: " + error.message, success: false};
     }
 }
 

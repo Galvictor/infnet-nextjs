@@ -16,7 +16,7 @@ function Users() {
             setUsers(users);
         });
 
-    });
+    }, []);
 
     return <Layout>
         <SEO

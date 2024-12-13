@@ -23,17 +23,17 @@ export default function Register() {
 
         try {
             // Cria o usuário no Firebase Authentication
-            const user = await registerUser(data.email, data.password, data.name, "user");
+            const res = await registerUser(data.email, data.password, data.name, "user", data.cpf);
 
-            if (!user) {
-                setErrorMessage("Erro ao registrar o usuário");
+            if (!res.success) {
+                setErrorMessage(res.message);
             } else {
-                console.log("Usuário registrado com sucesso!", user);
+                console.log("Usuário registrado com sucesso!", res);
+                await router.push("/");
             }
 
-            await router.push("/");
         } catch (error) {
-            console.error("Erro ao registrar:", error);
+            console.log("Erro ao registrar:", error);
             setErrorMessage("Falha ao registrar o usuário: " + error.message);
         } finally {
             setLoading(false);
@@ -65,6 +65,16 @@ export default function Register() {
                             {...register("email", {required: "Email é obrigatório"})}
                         />
                         {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="cpf" className="form-label">CPF</label>
+                        <input
+                            id="cpf"
+                            type="cpf"
+                            className={`form-control ${errors.cpf ? "is-invalid" : ""}`}
+                            {...register("cpf", {required: "CPF é obrigatório"})}
+                        />
+                        {errors.cpf && <div className="invalid-feedback">{errors.cpf.message}</div>}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Senha</label>
