@@ -37,6 +37,7 @@ function PerfilPage() {
         <Layout>
             <SEO/>
             <div className="container top-navbar">
+                <h1>Você esta logado como:</h1>
                 <Perfil user={userData}/>
             </div>
         </Layout>

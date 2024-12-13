@@ -4,15 +4,17 @@ export default function Perfil({user}) {
     }
 
     return (
-        <div className="card mb-4" style={{maxWidth: '500px', margin: 'auto'}}>
+        <div className="card mb-4">
             <div className="card-header bg-primary text-white text-center">
                 <h4 className="m-0">Informações do Usuário</h4>
             </div>
             <div className="card-body">
                 <div className="row">
                     <div className="col-12">
-                        <h5>{user.name}</h5>
+                        <p><strong>Nome:</strong> {user.name}</p>
                         <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>CPF:</strong> {user.cpf}</p>
+                        <p><strong>Role:</strong> {user.role}</p>
                     </div>
                 </div>
             </div>
