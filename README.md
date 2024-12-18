@@ -2,6 +2,15 @@
 
 Este projeto utiliza Next.js como framework de desenvolvimento e Firebase como backend para autenticação, armazenamento de dados e upload de arquivos. Ele inclui funcionalidades como autenticação de usuários, registro, proteção de rotas e gerenciamento de usuários.
 
+## Informações do Projeto
+
+- **Curso**: Pós-Graduação MIT em Desenvolvimento Web Full Stack
+- **Aula**: Front-end com Next.JS [24E4_3]
+- **Aluno**: João Victor de Souza Galvão Lopes
+- **Repositório GitHub**: [https://github.com/Galvictor/infnet-nextjs](https://github.com/Galvictor/infnet-nextjs)
+- **Deploy (CDN)**: Vercel
+- **URL do Projeto**: [https://infnet-nextjs-beryl.vercel.app/](https://infnet-nextjs-beryl.vercel.app/)
+
 ## Tecnologias Utilizadas
 
 - **Next.js**: Framework React para aplicações web.
