@@ -18,10 +18,10 @@ export async function getStaticProps() {
     const res = await fetch('https://dummyjson.com/products/search?q=phone');
     const {products} = await res.json();
 
-    // Revalidação a cada 10 segundos
+    // Revalidação a cada 300 segundos
     return {
         props: {products},
-        revalidate: 10
+        revalidate: 300
     };
 }
 
