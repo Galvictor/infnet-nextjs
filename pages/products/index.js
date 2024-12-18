@@ -5,12 +5,24 @@ import Link from "next/link";
 import Image from "next/image";
 import withAuth from "@/components/withAuth";
 
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
+//     console.log('Fetching products...');
+//     const res = await fetch('https://dummyjson.com/products/search?q=phone');
+//     const {products} = await res.json();
+//     return {props: {products}};
+//
+// }
+
+export async function getStaticProps() {
     console.log('Fetching products...');
     const res = await fetch('https://dummyjson.com/products/search?q=phone');
     const {products} = await res.json();
-    return {props: {products}};
 
+    // Revalidação a cada 10 segundos
+    return {
+        props: {products},
+        revalidate: 10
+    };
 }
 
 function ProductsPage({products}) {
