@@ -5,16 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import withAuth from "@/components/withAuth";
 
-export async function getStaticProps() {
-    console.log('getStaticProps Fetching products...');
-    const res = await fetch('https://dummyjson.com/products/search?q=phone', {next: {revalidate: 300}});
+export async function getServerSideProps() {
+    console.log('getServerSideProps Fetching products...');
+    const res = await fetch('https://dummyjson.com/products/search?q=phone');
     const {products} = await res.json();
+    return {props: {products}};
 
-    // Revalidação a cada 300 segundos
-    return {
-        props: {products},
-        revalidate: 300
-    };
 }
 
 function ProductsPage({products}) {
@@ -22,7 +18,7 @@ function ProductsPage({products}) {
         <SEO title="Produtos"
              description="Bem-vindo à página inicial do Meu Site. Explore conteúdos incríveis!"></SEO>
         <div className="container top-navbar">
-            <h1 className="text-2xl font-bold">Produtos (getStaticProps)</h1>
+            <h1 className="text-2xl font-bold">Produtos (getServerSideProps)</h1>
             <p className="text-gray-500">Aqui você encontra os melhores produtos do mercado!</p>
 
             <div className="row">

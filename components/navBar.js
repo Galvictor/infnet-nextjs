@@ -46,7 +46,12 @@ export default function NavBar() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" href="/products">
-                                    Produtos
+                                    (Produtos getStaticProps)
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/products/SSP">
+                                    (Produtos getServerSideProps)
                                 </Link>
                             </li>
                             <li className="nav-item">
