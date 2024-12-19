@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import {router} from "next/client";
 import {auth} from "@/libs/firebaseClient";
@@ -44,15 +45,39 @@ export default function NavBar() {
                                     Perfil
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" href="/products">
-                                    (Produtos getStaticProps)
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" href="/products/SSP">
-                                    (Produtos getServerSideProps)
-                                </Link>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Produtos Pages
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li>
+                                        <Link className="dropdown-item" href="/products">
+                                            (Produtos getStaticProps)
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="dropdown-item" href="/products/SSP">
+                                            (Produtos getServerSideProps)
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="dropdown-item" href="/products-isr">
+                                            (Produtos Cache ISR)
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="dropdown-item" href="/products-ssg">
+                                            (Produtos Cache SSG)
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="dropdown-item" href="/products-ssr">
+                                            (Produtos Cache SSR)
+                                        </Link>
+                                    </li>
+
+                                </ul>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" href="/contact">
