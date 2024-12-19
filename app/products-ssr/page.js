@@ -1,4 +1,5 @@
 import Layout from "@/components/layout";
+import CardProduto from "@/components/CardProduto";
 
 async function listarProdutos() {
     console.log('SSR: listarProdutos Fetching products...');
@@ -13,14 +14,11 @@ export default async function ProductsCachePage() {
         <div className="container top-navbar">
             <h1 className="text-2xl font-bold">Produtos (Cache SSR) - {new Date().toString()}</h1>
             <p className="text-gray-500">Aqui você encontra os melhores produtos do mercado!</p>
-            <ul>
-                {products.map(produto =>
-                    <li className="bg-green-300 m-2" key={produto.id}>
-                        <h2>{produto.title}</h2>
-                        <p>{produto.description}</p>
-                    </li>
-                )}
-            </ul>
+            <div className="row">
+                {products.map((product) => (
+                    <CardProduto key={product.id} product={product}/>
+                ))}
+            </div>
         </div>
     </Layout>
 }
